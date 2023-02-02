@@ -1,0 +1,56 @@
+#!/bin/bash
+
+cd /home/
+mkdir publico adm ven sec
+
+useradd carlos -c "funcionario de adm" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd carlos -e
+
+useradd maria -c "funcionario de adm" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd maria -e
+
+useradd joao -c "funcionario de adm" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd joao -e
+
+useradd debora -c "funcionario de vendas" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd debora -e
+
+useradd sebastiana -c "funcionario de vendas" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd sebastiana -e
+
+useradd roberto -c "funcionario de vendas" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd roberto -e
+
+useradd josefina -c "funcionario de seguranca" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd josefina -e
+
+useradd amanda -c "funcionario de seguranca" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd amanda -e
+
+useradd rogerio -c "funcionario de seguranca" -s /bin/bash -m -p $(openssl passwd -crypt 123)
+passwd rogerio -e
+
+groupadd GRP_ADM
+groupadd GRP_VEN
+groupadd GRP_SEC
+
+usermod -G GRP_ADM carlos
+usermod -G GRP_ADM maria
+usermod -G GRP_ADM joao
+
+usermod -G GRP_VEN debora
+usermod -G GRP_VEN sebastiana
+usermod -G GRP_VEN roberto
+
+usermod -G GRP_SEC josefina
+usermod -G GRP_SEC amanda
+usermod -G GRP_SEC rogerio
+
+chown root:GRP_ADM /home/adm/
+chown root:GRP_VEN /home/ven/
+chown root:GRP_SEC /home/sec/
+
+chmod 777 /home/publico/
+chmod 770 /home/adm/
+chmod 770 /home/ven/
+chmod 770 /home/sec/
